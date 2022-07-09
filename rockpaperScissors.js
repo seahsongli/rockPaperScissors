@@ -8,12 +8,39 @@ function getRandomNumber(min,max) {
 }
 
 
-
-function computerPlay(a){
+// Function to get a random play from computer
+function computerPlay(){  
+      let computerChoices = ["rock", "paper", "scissors"];
       let randomIndex = getRandomNumber(0,2);
-      let result = a[randomIndex]
+      let result = computerChoices[randomIndex]
       return result;
 }
 
-let computerChoices = ["rock", "paper", "scissors"];
-console.log(computerPlay(computerChoices))
+//Function to return get the first letter capitalized
+function capitalizeFirstLetter(str){
+    // converting first letter to uppercase
+    const capitalized = str.charAt(0).toUpperCase() + str.slice(1);
+
+    return capitalized;
+}
+
+
+
+// Function to get the round to start playing
+function playRound(playerSelection,computerSelection) {
+    playerSelection.toLowerCase()
+    if (playerSelection == computerSelection){
+        return(`It is a tie!${capitalizeFirstLetter(computerSelection)}(computer) vs ${capitalizeFirstLetter(playerSelection)}(player).`)
+    }
+
+    else if ((playerSelection == "rock" && computerSelection == "paper") || (playerSelection == "paper" && computerSelection == "scissors") || (playerSelection == "scissors" && computerSelection == "rock"))  {
+        return(`You lose! ${capitalizeFirstLetter(computerSelection)}(computer) beats ${capitalizeFirstLetter(playerSelection)}(player).`)
+    }
+    else {
+        return(`You Win! ${capitalizeFirstLetter(playerSelection)}(player) beats ${capitalizeFirstLetter(computerSelection)}(computer).`)
+    }
+}
+
+const playerSelection = "rock";
+const computerSelection = computerPlay();
+console.log(playRound(playerSelection, computerSelection));
